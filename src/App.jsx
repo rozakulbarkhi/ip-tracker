@@ -18,7 +18,9 @@ const App = () => {
   const fetchIp = async (ip) => {
     try {
       const res = await axios.get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=at_9wwz4mzyc8O87Pm9MD1ldmJqbC62H&ipAddress=${ip}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${
+          import.meta.env.VITE_API_KEY
+        }&ipAddress=${ip}`
       );
 
       setAddress(res.data);
@@ -74,8 +76,6 @@ const App = () => {
     );
   };
 
-  console.log(address);
-
   return (
     <div className="min-h-screen overflow-hidden">
       <img
@@ -101,7 +101,7 @@ const App = () => {
             onChange={(e) => setIp(e.target.value)}
             onKeyDown={handleEnter}
             className="md:w-1/4 w-full h-11 rounded-s-lg px-4 apperance-none outline-none placeholder:md:text-sm placeholder:text-xs"
-            placeholder="Search for any IP address or domain"
+            placeholder="Search for any IP address"
           />
           <div
             className="text-lg h-11 w-11 text-white flex justify-center items-center bg-black hover:bg-slate-800 rounded-r-lg cursor-pointer"
